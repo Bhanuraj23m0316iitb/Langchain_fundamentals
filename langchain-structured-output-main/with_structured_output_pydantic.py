@@ -14,6 +14,7 @@ class Review(BaseModel):
     summary: str = Field(description="A brief summary of the review")
     sentiment: Literal["pos", "neg"] = Field(description="Return sentiment of the review either negative, positive or neutral")
     pros: Optional[list[str]] = Field(default=None, description="Write down all the pros inside a list")
+    # Optinal always comes with the Default value
     cons: Optional[list[str]] = Field(default=None, description="Write down all the cons inside a list")
     name: Optional[str] = Field(default=None, description="Write the name of the reviewer")
     
@@ -34,5 +35,6 @@ S-Pen support is unique and useful
                                  
 Review by Nitish Singh
 """)
+
 
 print(result)
