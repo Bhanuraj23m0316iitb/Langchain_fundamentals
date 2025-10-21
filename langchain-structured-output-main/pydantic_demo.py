@@ -11,10 +11,12 @@ class Student(BaseModel):
 
 new_student = {'age':'32', 'email':'abc@gmail.com'}
 
-student = Student(**new_student)
+student = Student(**new_student) # unpacking the dictionary
+# converting pydantic object into dictionary with the help of dict function
 
 student_dict = dict(student)
 
 print(student_dict['age'])
 
+# converting pydantic obejct into the json format
 student_json = student.model_dump_json()
