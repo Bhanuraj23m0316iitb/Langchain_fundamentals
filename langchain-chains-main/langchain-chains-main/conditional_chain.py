@@ -38,6 +38,13 @@ prompt3 = PromptTemplate(
     input_variables=['feedback']
 )
 
+""" condtional branching with the help of runnable
+branch_chain = RunnableBranch(
+    (condtion1, chain1), either this chain will execute or below chain execute depending on the condtion
+    (condtion2, chain2),
+    default chain1 or chain2
+)
+"""
 branch_chain = RunnableBranch(
     (lambda x:x.sentiment == 'positive', prompt2 | model | parser),
     (lambda x:x.sentiment == 'negative', prompt3 | model | parser),
@@ -47,5 +54,6 @@ branch_chain = RunnableBranch(
 chain = classifier_chain | branch_chain
 
 print(chain.invoke({'feedback': 'This is a beautiful phone'}))
+
 
 chain.get_graph().print_ascii()
