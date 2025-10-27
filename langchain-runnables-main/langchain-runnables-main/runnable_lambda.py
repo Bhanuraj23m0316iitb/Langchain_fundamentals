@@ -20,6 +20,8 @@ parser = StrOutputParser()
 
 joke_gen_chain = RunnableSequence(prompt, model, parser)
 
+""" with the help of runnable lambda you can make any custom python function to a part of chain so that it can integrate with the chains
+"""
 parallel_chain = RunnableParallel({
     'joke': RunnablePassthrough(),
     'word_count': RunnableLambda(word_count)
@@ -32,3 +34,4 @@ result = final_chain.invoke({'topic':'AI'})
 final_result = """{} \n word count - {}""".format(result['joke'], result['word_count'])
 
 print(final_result)
+
